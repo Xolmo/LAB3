@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <title > Lista Pacientes</title>
+</head>
+<body>
+<header th:replace="fragments::header"></header>
+<main>
+    <div class="container px-4 py-5">
+        <h1 class="pb-2 border-bottom">Lista Pacientes</h1>
+        <div class="d-flex mt-3 mb-4">
+            <a class="btn btn-secondary ms-auto" th:href="@{'/'}">Regresar</a>
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Género</th>
+                <th>Diagnóstico</th>
+                <th>Fecha Cita</th>
+                <th>Número de Habitación</th>
+                <th>Doctor Asignado</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="paciente : ${pacientes}">
+                <td th:text="${paciente.getId()}"></td>
+                <td th:text="${paciente.getNombre()}"></td>
+                <td th:text="${paciente.getEdad()}"></td>
+                <td th:text="${paciente.getGenero()}"></td>
+                <td th:text="${paciente.getDiagnostico()}"></td>
+                <td th:text="${paciente.getFechaCita()}"></td>
+                <td th:text="${paciente.getNumHabitacion()}"></td>
+                <td th:text="${paciente.getDoctor().getNombre()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
