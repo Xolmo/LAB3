@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+  <title>Lista Pacientes</title>
+</head>
+<body>
+<header th:replace="fragments::header"></header>
+<main>
+  <div class="container px-4 py-5">
+    <h1 class="pb-2 border-bottom">Lista de Pacientes</h1>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Edad</th>
+        <th>Genero</th>
+        <th>Número de Habitación</th>
+        <th>Doctor Asignado</th>
+        <th>Hospital Asignado</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="paciente: ${pacientes}">
+        <td th:text="${paciente.getId()}"></td>
+        <td th:text="${paciente.getNombre()}"></td>
+        <td th:text="${paciente.getEdad()}"></td>
+        <td th:text="${paciente.getGenero()}"></td>
+        <td th:text="${paciente.getNumHabitacion()}"></td>
+        <td th:text="${paciente.getDoctor().getNombre()}"></td>
+        <td th:text="${paciente.getHospital().getNombre()}"></td>
+
+        <td><a class="btn btn-primary"
+               th:href="@{'/paciente/edit?id=' + ${paciente.getId()}}">Derivar Paciente</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
