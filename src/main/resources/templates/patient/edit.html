@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+  <title>Derivar Paciente</title>
+</head>
+<body>
+<main>
+  <div class="container px-4 py-5">
+    <h1 class="pb-2 mb-3 border-bottom">Derivar Paciente</h1>
+    <form method="post" th:action="@{/paciente/update}" th:object="${paciente}" class="mt-2">
+      <input name="id" type="hidden" th:field="*{id}">
+      <div class="mb-3">
+        <label for="doctor" class="form-label">Doctor</label>
+        <select th:field="*{doctor}" class="form-select" id="doctor" name="doctor">
+          <option th:each="doctor: ${listaDoctores}"
+                  th:text="${doctor.getNombre()}" th:value="${doctor.getId()}">Seleccione el doctor</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="hospital" class="form-label">Hospital</label>
+        <select th:field="*{hospital}" class="form-select" id="hospital" name="hospital">
+          <option th:each="hospital: ${listaHospitales}"
+                  th:text="${hospital.getNombre()}" th:value="${hospital.getId()}">Seleccione el hospital</option>
+        </select>
+      </div>
+      <a th:href="@{/paciente}" class="btn btn-danger">Cancelar</a>
+      <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    </form>
+  </div>
+</main>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
